@@ -393,3 +393,22 @@
     font-size: 30px;
    }
  }
+
+ @media (max-width: 750px) {
+  .container {
+    max-width: calc(684px + 33px * 2);
+    padding-inline: 33px;
+   }
+
+   .check-out-cards {
+    gap: 80px;
+   }
+
+   .logo {
+    font-size: 44px;
+   }
+
+   .info-title {
+    font-size: 60px;
+   }
+ }
