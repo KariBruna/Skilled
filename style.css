@@ -2,209 +2,209 @@
   Нормализация блочной модели
  */
  *,
- ::before,
- ::after {
-   box-sizing: border-box;
- }
- 
- /**
-   Убираем внутренние отступы слева тегам списков,
-   у которых есть атрибут class
-  */
- :where(ul, ol):where([class]) {
-   padding-left: 0;
- }
- 
- /**
-   Убираем внешние отступы body и двум другим тегам,
-   у которых есть атрибут class
-  */
- body,
- :where(blockquote, figure):where([class]) {
-   margin: 0;
- }
- 
- /**
-   Убираем внешние отступы вертикали нужным тегам,
-   у которых есть атрибут class
-  */
- :where(
-   h1,
-   h2,
-   h3,
-   h4,
-   h5,
-   h6,
-   p,
-   ul,
-   ol,
-   dl
- ):where([class]) {
-   margin-block: 0;
- }
- 
- :where(dd[class]) {
-   margin-left: 0;
- }
- 
- :where(fieldset[class]) {
-   margin-left: 0;
-   padding: 0;
-   border: none;
- }
- 
- /**
-   Убираем стандартный маркер маркированному списку,
-   у которого есть атрибут class
-  */
- :where(ul[class]) {
-   list-style: none;
- }
- 
- :where(address[class]) {
-   font-style: normal;
- }
- 
- /**
-   Обнуляем вертикальные внешние отступы параграфа,
-   объявляем локальную переменную для внешнего отступа вниз,
-   чтобы избежать взаимодействие с более сложным селектором
-  */
- p {
-   --paragraphMarginBottom: 24px;
- 
-   margin-block: 0;
- }
- 
- /**
-   Внешний отступ вниз для параграфа без атрибута class,
-   который расположен не последним среди своих соседних элементов
-  */
- p:where(:not([class]):not(:last-child)) {
-   margin-bottom: var(--paragraphMarginBottom);
- }
- 
- 
- /**
-   Упрощаем работу с изображениями и видео
-  */
- img,
- video {
-   display: block;
-   max-width: 100%;
-   height: auto;
- }
- 
- /**
-   Наследуем свойства шрифт для полей ввода
-  */
- input,
- textarea,
- select,
- button {
-   font: inherit;
- }
- 
- html {
-   /**
-     Пригодится в большинстве ситуаций
-     (когда, например, нужно будет "прижать" футер к низу сайта)
-    */
-   height: 100%;
-   /**
-     Убираем скачок интерфейса по горизонтали
-     при появлении / исчезновении скроллбара
-    */
-   scrollbar-gutter: stable;
- }
- 
- /**
-   Плавный скролл
-  */
- html,
- :has(:target) {
-   scroll-behavior: smooth;
- }
- 
- body {
-   /**
-     Пригодится в большинстве ситуаций
-     (когда, например, нужно будет "прижать" футер к низу сайта)
-    */
-   min-height: 100%;
-   /**
-     Унифицированный интерлиньяж
-    */
-   line-height: 1.5;
- }
- 
- /**
-   Нормализация высоты элемента ссылки при его инспектировании в DevTools
-  */
- a:where([class]) {
-   display: inline-flex;
- }
- 
- /**
-   Курсор-рука при наведении на элемент
-  */
- button,
- label {
-   cursor: pointer;
- }
- 
- /**
-   Приводим к единому цвету svg-элементы
-  */
- [fill] { fill: currentColor }
- [stroke] { stroke: currentColor }
- 
- /**
-   Чиним баг задержки смены цвета при взаимодействии с svg-элементами
-  */
- svg * {
-   transition-property: fill, stroke;
- }
- 
- /**
-   Приведение рамок таблиц в классический 'collapse' вид
-  */
- :where(table) {
-   border-collapse: collapse;
-   border-color: currentColor;
- }
- 
- /**
-   Удаляем все анимации и переходы для людей,
-   которые предпочитают их не использовать
-  */
- @media (prefers-reduced-motion: reduce) {
-   *,
-  ::before,
-  ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
- }
+::before,
+::after {
+  box-sizing: border-box;
+}
 
- :root {
-  --color-dark-blue: #13183E;
-  --color-light: #FFFFFF;
-  --color-light-gray: #82828A;
-  --color-light-pink: #FB578C;
-  --color-light-purple: #A43CCF;
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+*/
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
 
-  --transition-duration: 0.2s;
- }
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+*/
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
 
- a {
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+*/
+:where(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol,
+  dl
+):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+*/
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+*/
+p {
+  --paragraphMarginBottom: 24px;
+
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+*/
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+
+/**
+  Упрощаем работу с изображениями и видео
+*/
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+*/
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  height: 100%;
+  /**
+    Убираем скачок интерфейса по горизонтали
+    при появлении / исчезновении скроллбара
+  */
+  scrollbar-gutter: stable;
+}
+
+/**
+  Плавный скролл
+*/
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+  */
+  line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+*/
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+*/
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+*/
+[fill] { fill: currentColor }
+[stroke] { stroke: currentColor }
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+*/
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Приведение рамок таблиц в классический 'collapse' вид
+*/
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+::before,
+::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+}
+
+:root {
+--color-dark-blue: #13183E;
+--color-light: #FFFFFF;
+--color-light-gray: #82828A;
+--color-light-pink: #FB578C;
+--color-light-purple: #A43CCF;
+
+--transition-duration: 0.2s;
+}
+
+a {
   color: var(--color-dark-blue);
   text-decoration: none;
- }
+}
 
- body {
+body {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 12px;
@@ -212,23 +212,23 @@
   color: var(--color-light-gray);
   background-color: var(--color-light);
   overflow-x: hidden;
- }
+}
 
- .content {
-   background: linear-gradient(to bottom, transparent 50%, #EFF1FE, var(--color-light));
- }
+.content {
+  background: linear-gradient(to bottom, transparent 50%, #EFF1FE, var(--color-light));
+}
 
- .container {
+.container {
   max-width: 1110px;
   margin: 0 auto;
- }
+}
 
- .logo {
-  font-size: 30px;
+.logo {
+  font-size: 40px;
   font-weight: 700;
- }
+}
 
- .button {
+.button {
   display: inline-flex;
   align-items: center;
   padding-inline: 33px;
@@ -239,17 +239,17 @@
   border-radius: 30px;
   font-weight: 700;
   font-size: 18px;
- }
+}
 
- .header-get-button {
+.header-get-button {
   background-color: var(--color-dark-blue);
- }
+}
 
- .info-get-button {
+.info-get-button {
   background: linear-gradient(0deg, #F33398, #FF6658);
- }
+}
 
- .header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -260,68 +260,78 @@
   max-width: 1110px;
   left: 50%;
   transform: translateX(-50%);
- }
+}
 
- .about {
+.about {
   display: flex;
   justify-content: center;
   /* border: 3px solid green; */
- }
+}
 
- .body-info {
+.body-info {
   width: 50%;
-  padding-top: 200px;
+  padding-top: 255px;
   padding-bottom: 250px;
- }
+}
 
- .info-title {
-  font-size: 52px;
+.info-title {
+  font-size: 56px;
   font-weight: 700;
   color: var(--color-dark-blue);
-  padding-bottom: 50px;
- }
+  padding-bottom: 40px;
+}
 
- .info-description {
+.info-description {
   color: var(--color-light-gray);
   font-size: 18px;
   padding-bottom: 45px;
- }
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
 
- .background-container {
+.background-container {
   position: relative;
   width: 50%;
-  top: 150px;
-  left: 130px;
+  top: 145px;
+  left: 135px;
   /* border: 3px solid blue; */
- }
+}
 
- .background-element {
+.background-element {
   position: absolute;
   background-size: cover;
   background-repeat: no-repeat;
   /* border: 3px solid red; */
- }
+}
 
- .parallelogram {
+.parallelogram {
   top: 0;
   left: 27%;
-  width: 625px;
+  width: 650px;
   height: 316px;
   background: linear-gradient(90deg, #C335BF, #7547E8);
   transform: rotate(-45deg);
- }
+}
 
- .image {
-  background-image: url(./assets/images/girl_cap_1.png),linear-gradient(0deg, #F53E8E, #FF6D4B);
+.image {
+  background: linear-gradient(0deg, #F53E8E, #FF6D4B);
   width: 320px;
   height: 560px;
   background-repeat: no-repeat;
   border-radius: 180px;
   top: 3%;
   left: 10%;
- }
+  overflow: hidden;
+}
 
- .rectangle1 {
+.girl-img {
+  position: absolute;
+  top: 6%;
+  /* left: 0; */
+  max-width: 120%;
+}
+
+.rectangle1 {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -331,11 +341,11 @@
   height: 120px;
   background-color: #FFFFFF;
   border-radius: 15px;
-  top: 18%;
-  left: 60%;
- }
+  top: 15%;
+  left: 61%;
+}
 
- .rectangle2 {
+.rectangle2 {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -345,48 +355,31 @@
   height: 120px;
   background-color: #FFFFFF;
   border-radius: 15px;
-  top: 45%;
-  left: -13%;
+  top: 42%;
+  left: -12%;
   box-shadow: -20px 20px 60px #DDDFEE;
- }
+}
 
- .rectangle-description {
+.rectangle-description {
   font-size: 16px;
   font-weight: 700;
   color: var(--color-light-gray);
- }
+}
 
- .rectangle-subtitle {
-  font-size: 36px;
+.rectangle-subtitle {
+  font-size: 40px;
   font-weight: 900;
   color: var(--color-dark-blue);
- }
+}
 
- .container{
-  /* margin-bottom: 140px; */
-  /* background: linear-gradient(0deg, #EFF1FE, var(--color-light)); */
- }
-
- .check-out-cards {
+.check-out-cards {
   display: flex;
   gap: 80px 30px;
-  padding-bottom: 140px;
-  /* border: 3px solid green; */
+  padding-bottom: 12%;
   flex-wrap: wrap;
-  /* position: relative; */
- }
+}
 
- /* .check-out-cards::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 50%;
-  bottom: 0;
-  background: linear-gradient(0deg, #EFF1FE, var(--color-light));
-  z-index: -1;
- } */
-
- .card {
+.card {
   display: flex;
   justify-content: start;
   align-items: start;
@@ -394,13 +387,13 @@
   font-size: 30px;
   height: 325px; 
   border-radius: 20px;
-  padding: 0 30px;
+  padding: 10px 40px;
   background: var(--color-light);
   flex: calc(33.33% - 90px / 3);
   /* border: 3px solid red; */
- }
+}
 
- .circle {
+.circle {
   content: "";  
   width: 55px;
   height: 55px;
@@ -408,55 +401,56 @@
   background: linear-gradient(0deg, #F22CA3, #FF6D4B);
   position: relative;
   top: -30px;
- }
+}
 
- svg {
+svg {
   width: 25px;
   height: 25px;
   position: absolute;
   top: 30%;
   right: 27%;
- }
+}
 
- .card:hover {
+.card:hover {
   cursor: pointer;
   box-shadow: 2px 2px 4px rgba(61, 105, 16, 0.5);
   transition: 0.2s;
- }
+}
 
- .card:hover > .circle {
+.card:hover > .circle {
   cursor: pointer;
   box-shadow: 2px 2px 4px rgba(61, 105, 16, 0.5);
   transition: 0.2s;
- }
+}
 
- .check-out-card:first-child {
+.check-out-card:first-child {
   font-size: 34px;
   font-weight: 700;
   line-height: 1.2;
-  padding-top: 50px;
+  padding-top: 65px;
   color: var(--color-light);
   background: linear-gradient(0deg, #F22CA3, #FF6D4B);
- }
+}
 
- .card-title {
+.card-title {
   color: var(--color-dark-blue);
   font-size: 26px;
-  padding-bottom: 35px;
- }
+  padding-bottom: 25px;
+}
 
- .card-description {
+.card-description {
   color: var(--color-light-gray);
   font-size: 18px;
- }
+  line-height: 1.5;
+}
 
- .card-get-button {
+.card-get-button {
   color: var(--color-light-pink);
   background: var(--color-light);
   padding-inline: 0;
- }
+}
 
- .footer {
+.footer {
   height: 120px;
   background-color: var(--color-dark-blue);
   display: flex;
@@ -466,261 +460,12 @@
   width: 100%;
   left: 50%;
   transform: translateX(-50%);
- }
+}
 
- .footer-logo {
+.footer-logo {
   color: var(--color-light);
- }
-
- .footer-get-button {
-  background: linear-gradient(0deg, #DD2EAF, #993FD4);
- }
-
- @media (max-width: 1300px) {
-  .background-container {
-    margin-right: 30px;
-  }
- }
-
- @media (max-width: 1250px) {
-  .container {
-    max-width: 1110px;
-    margin-inline: 40px;
-  }
-  .background-container {
-    margin-right: 30px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .background-container {
-    margin-right: 30px;
-  }
-}
-
-  @media (max-width: 1110px) {
-  .header {
-    margin-inline: 40px;
-  }
-  .card {
-    flex: calc(50% - 60px / 2);
-  }
-}
-
-  @media (max-width: 700px) {
-  .header {
-    margin-inline: 32px;
-    max-width: 500px;
-  }
-
-  .image {
-    width: 505px;
-    height: 505px;
-    border-radius: 50%;
-  }
-}
-
-@media (max-width: 960px) {
-  .container {
-    max-width: 950px;
-    margin-inline: 30px;
-   }
-  }
-
-@media (max-width: 768px) {
-.container {
-  max-width: 690px;
-  margin-inline: 40px;
-  }
-
-  .logo {
-  font-size: 24px;
-  }
-
-  .button {
-  padding-inline: 40px;
-  height: 56px;
-  }
-
-  .about {
-  padding-top: 0;
-  padding-bottom: 185px;
-  }
-
-  .info-title {
-  font-size: 34px;
-  font-weight: 800;
-  }
-
-  .info-description {
-  color: var(--color-light-gray);
-  font-size: 14px;
-  line-height: 1.5;
-  padding-bottom: 30px;
-  }
-
-  .info-get-button {
-  width: 180px;
-  }
-
-  .background-container {
-  
-  } 
-
-  .parallelogram {
-  width: 625px;
-  height: 190px;
-  translate: 70% -150%;
-  } 
-
-  /* .image {
-  /* background-image: url(./assets/images/girl_cap.png); */
-  /*width: 218px;
-  height: 382px;
-  right: 40px;
-  top: -250px;
-} */
-/*  
-.rectangle1 {
-  padding-left: 25px;
-  width: 105px;
-  height: 100px;
-  right: -45px;
-  top: -275px;
-} */
-/*  
-.rectangle2 {
-  padding-left: 23px;
-  width: 155px;
-  height: 100px;
-  right: 147px;
-  top: 68px;
-} */
-
-  .check-out-cards {
-  gap: 10px 55px;
-  }
-}
-
-@media (max-width: 750px) {
-.container {
-max-width: calc(684px + 33px * 2);
-}
-
-.logo {
-font-size: 60px;
-}
-
-.info-title {
-font-size: 62px;
-}
-
-.info-description {
-font-size: 28px;
-}
-
-.button {
-width: 280px;
-height: 95px;
-border-radius: 70px;
-font-size: 32px;
-display: inline;
-align-items: center;
-}
-
-.about {
-display: block;
-}
-
-.body-info {
-width: 100%;
-padding-bottom: 140px;
-}
-
-.background-container {
-width: 100%;
-}
-
-.image {
-background-image: url(./assets/images/girl_cap_3.png),linear-gradient(0deg, #F53E8E, #FF6D4B);
-width: 250px;
-height: 250px;
-border-radius: 50%;
-background-size: 300%;
-}
-
-.rectangle1 {
-width: 210px;
-height: 210px;
-padding-left: 40px;
-}
-
-.rectangle2 {
-width: 310px;
-height: 200px;
-padding-left: 40px;
-}
-
-.rectangle-description {
-font-size: 30px;
-font-weight: 700;
-}
-
-.rectangle-subtitle {
-font-size: 70px;
-font-weight: 900;
-}
-
-.card {
-height: 520px;
-padding: 0 55px;
-}
-
-.card-title {
-font-size: 42px;
-padding-bottom: 45px;
-}
-
-.card-description {
-font-size: 30px;
-line-height: 1.5;
-}
-
-.check-out-card:first-child {
-font-size: 48px;
-height: 240px;
-padding-top: 55px;
-padding-left: 60px;
-}
-
-.card-get-button {
-font-size: 34px;
-padding-inline: 0;
-text-align: start;
-}
-
-.circle {
-content: "";  
-width: 113px;
-height: 113px;
-top: -60px;
-}
-
-.check-out-cards {
-gap: 80px;
-}
-
-svg {
-width: 40px;
-height: 40px;
-right: 32%;
-}
-
-.footer {
-height: 240px;
 }
 
 .footer-get-button {
-background: linear-gradient(0deg, #DD2EAF, #564DF8);
-}
+  background: linear-gradient(0deg, #DD2EAF, #993FD4);
 }
